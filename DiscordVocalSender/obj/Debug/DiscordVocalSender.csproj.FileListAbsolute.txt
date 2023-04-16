@@ -1,0 +1,13 @@
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\bin\Debug\DiscordVocalSender.exe.config
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\bin\Debug\DiscordVocalSender.exe
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\bin\Debug\DiscordVocalSender.pdb
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.csproj.AssemblyReference.cache
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.Form1.resources
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.Properties.Resources.resources
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.csproj.GenerateResource.cache
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.csproj.CoreCompileInputs.cache
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.exe
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.pdb
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\bin\Debug\Newtonsoft.Json.dll
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\bin\Debug\Newtonsoft.Json.xml
+C:\Users\rayan\source\repos\DiscordVocalSender\DiscordVocalSender\obj\Debug\DiscordVocalSender.csproj.CopyComplete
