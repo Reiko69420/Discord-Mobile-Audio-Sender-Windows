@@ -6,21 +6,52 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
+using NAudio.Wave;
+using NReco.VideoConverter;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace DiscordVocalSender
 {
     public partial class Form1 : Form
     {
         string filePath = "";
+        string base64 = "AACbLjoAAA==";
+        Process process;
+
+        public static string GenerateWaveform(string inputFilePath, int intensity)
+        {
+            using (var reader = new AudioFileReader(inputFilePath))
+            {
+                var samples = new float[reader.Length / reader.WaveFormat.BlockAlign];
+                reader.Read(samples, 0, (int)reader.Length / reader.WaveFormat.BlockAlign);
+
+                var max = 0f;
+                for (int i = 0; i < samples.Length; i++)
+                {
+                    var sample = Math.Abs(samples[i]);
+                    if (sample > max)
+                        max = sample;
+                }
+
+                var waveformBuilder = new StringBuilder();
+                
+                for (int i = 0; i < samples.Length; i += samples.Length / 50)
+                {
+                    var sample = Math.Abs(samples[i]) * intensity;
+                    var scaledSample = (int)(sample / max * 100);
+                    waveformBuilder.Append(Convert.ToChar(scaledSample));
+                }
+
+
+                return Convert.ToBase64String(Encoding.UTF8.GetBytes(waveformBuilder.ToString()));
+            }
+        }
 
         public Form1()
         {
@@ -45,12 +76,42 @@ namespace DiscordVocalSender
             {
                 filePath = ofd1.FileName;
                 LabelAudio.Text = filePath;
+
+                //var ffMpeg = new FFMpegConverter();
+                //ffMpeg.ConvertMedia(@filePath, Directory.GetCurrentDirectory() + "/TempAudio.wav", "wav");
+
+                // Convert the audio file to WAV format using FFmpeg
+                var startInfo = new ProcessStartInfo
+                {
+                    FileName = "ffmpeg",
+                    Arguments = $"-i \"{filePath}\" -b:a 64k -compression_level 8 \"{Directory.GetCurrentDirectory()}/TempAudio.mp3\"",
+                    CreateNoWindow = true,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true
+                };
+                process = Process.Start(startInfo);
+
             }
             else
             {
                 filePath = "";
                 LabelAudio.Text = "NO AUDIO SELECTED!";
             }
+        }
+
+        private void formBtn_Click(object sender, EventArgs e)
+        {
+
+            if (int.TryParse(formIntensity.Text, out int result))
+            {
+                base64 = GenerateWaveform(Directory.GetCurrentDirectory() + "/TempAudio.mp3", result);
+            }
+            else
+            {
+                base64 = GenerateWaveform(Directory.GetCurrentDirectory() + "/TempAudio.mp3", 5);
+            }
+            MessageBox.Show("Wavefront should work!", "WaveForm created!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private async void SendButton_ClickAsync(object sender, EventArgs e)
@@ -110,7 +171,7 @@ namespace DiscordVocalSender
                         int max = 862625563;
                         long nonce = rand.Next(min, max);
 
-                        string messageJson = "{\"attachments\":[{\"duration_secs\":" + LengthBox.Text + ",\"filename\":\"voice-message.ogg\",\"id\":\"0\",\"uploaded_filename\":\"" + fileNameDiscord  + "\",\"waveform\":\"AACbLjoAAA==\"}],\"channel_id\":\"" + ChannelBox.Text + "\",\"content\":\"\",\"flags\":8192,\"nonce\":\"" + nonce + "\",\"type\":0}";
+                        string messageJson = "{\"attachments\":[{\"duration_secs\":" + LengthBox.Text + ",\"filename\":\"voice-message.ogg\",\"id\":\"0\",\"uploaded_filename\":\"" + fileNameDiscord  + "\",\"waveform\":\"" + base64 + "\"}],\"channel_id\":\"" + ChannelBox.Text + "\",\"content\":\"\",\"flags\":8192,\"nonce\":\"" + nonce + "\",\"type\":0}";
                         using (var client3 = new HttpClient())
                         {
                             client3.DefaultRequestHeaders.Add("User-Agent", "Discord-Android/172024");
@@ -135,6 +196,18 @@ namespace DiscordVocalSender
                 }
             }
             
+        }
+
+        private void seeToken_CheckedChanged(object sender, EventArgs e)
+        {
+            if (seeToken.Checked)
+            {
+                TokenBox.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                TokenBox.UseSystemPasswordChar = true;
+            }
         }
     }
 }

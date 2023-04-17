@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NReco</name>
+    </assembly>
+    <members>
+        <member name="T:NReco.Collections.CollectionWrapper`1">
+            <summary>
+            List wrapper that makes generic ICollection compatible with non-generic ICollection
+            </summary>
+            <typeparam name="T">collection item type</typeparam>
+        </member>
+        <member name="T:NReco.Collections.DataRowDictionaryWrapper">
+            <summary>
+            Dictionary wrapper over DataRow class.
+            </summary>
+        </member>
+        <member name="T:NReco.Collections.DictionaryView">
+            <summary>
+            Dictionary 'view' (like DataRowView) wrapper.
+            </summary>
+        </member>
+        <member name="T:NReco.Collections.ListWrapper`1">
+            <summary>
+            List wrapper that makes generic IList compatible with non-generic IList
+            </summary>
+            <typeparam name="T">list item type</typeparam>
+        </member>
+        <member name="T:NReco.Collections.ObjectDictionaryWrapper">
+            <summary>
+            Dictionary wrapper over any object.
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.BaseGenericTypeConverter">
+            <summary>
+            Base class for generic converters
+            </summary>
+        </member>
+        <member name="T:NReco.ITypeConverter">
+            <summary>
+            Type converter interface.
+            </summary>
+        </member>
+        <member name="M:NReco.ITypeConverter.CanConvert(System.Type,System.Type)">
+            <summary>
+            Determines whether the type can be converted to the specified data type. 
+            </summary>
+            <param name="fromType">source type</param>
+            <param name="toType">destination type</param>
+            <returns>true if the source type can be converted to the destination type</returns>
+        </member>
+        <member name="M:NReco.ITypeConverter.Convert(System.Object,System.Type)">
+            <summary>
+            Returns an object of the specified type and whose value is equivalent to the specified object.
+            </summary>
+            <param name="o">original object instance</param>
+            <param name="toType">the type of object to return</param>
+            <returns>An object whose type is toType and whose value is equivalent to original object</returns>
+        </member>
+        <member name="T:NReco.Converting.BaseTypeConverter`4">
+            <summary>
+            Simple type converter useful for conversions from one compatible interface to another.
+            </summary>
+            <typeparam name="T1">target type</typeparam>
+            <typeparam name="T2">compatible with target type</typeparam>
+            <typeparam name="DirectWr">from T1 to T2 wrapper type</typeparam>
+            <typeparam name="ReverseWr">from T2 to T1 wrapper type</typeparam>
+        </member>
+        <member name="T:NReco.Converting.ConvertManager">
+            <summary>
+            Provides access to default type conversion mechanizm.
+            </summary>
+        </member>
+        <member name="M:NReco.Converting.ConvertManager.Configure">
+            <summary>
+            Configure type manager from application config.
+            </summary>
+        </member>
+        <member name="M:NReco.Converting.ConvertManager.FindConverter(System.Type,System.Type)">
+            <summary>
+            Find converter in default converters for given conversion.
+            </summary>
+            <param name="fromType">from type</param>
+            <param name="toType">to type</param>
+            <returns>type converter that can perform conversion or null</returns>
+        </member>
+        <member name="P:NReco.Converting.ConvertManager.Converters">
+            <summary>
+            List of default converters.
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.ConvertManagerCfgHandler">
+            <summary>
+            Type manager configuration handler.
+            </summary>
+            <remarks>
+            Configuration sample:
+            <code>
+            <nreco.converting>
+            	<converter>NReco.Converters.GenericProviderConverter,NReco</converter>
+            </nreco.converting>
+            </code>
+            </remarks>
+        </member>
+        <member name="T:NReco.Converting.ArrayConverter">
+            <summary>
+            Array converter.
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.CastConverter">
+            <summary>
+            Cast converter. Implements default routine.
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.DelegateConverter">
+            <summary>
+            Delegate and SAM-interfaces converter.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:NReco.Converting.DelegateConverter.GetDelegateType(System.Reflection.MethodInfo)" -->
+        <member name="T:NReco.DelegateAdapter">
+            <summary>
+            Provides generic functionality for constructing dynamic delegates at runtime
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.GenericEnumerableConverter">
+            <summary>
+            Generic IEnumerable convertor interface
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.NullableConverter">
+            <summary>
+            Implements converter routine for nullable types.
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.DefaultConverter">
+            <summary>
+            Implements default converter routine (uses internal System.ComponentModel mechanism).
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.DataRowConverter">
+            <summary>
+            DataRow converter.
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.GenericCollectionConverter">
+            <summary>
+            Generic ICollection convertor interface
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.GenericDictionaryConverter">
+            <summary>
+            Generic IDictionary converter interface
+            </summary>
+        </member>
+        <member name="T:NReco.Converting.GenericListConverter">
+            <summary>
+            Generic IList convertor interface
+            </summary>
+        </member>
+        <member name="T:NReco.LazyDelegateAdapter">
+            <summary>
+            Lazy delegate proxy implementation 
+            </summary>
+        </member>
+        <member name="M:NReco.LazyDelegateAdapter.#ctor(System.Func{System.Delegate})">
+            <summary>
+            Initializes new instance of LazyDelegateAdapter with specified factory that provides delegate to invoke
+            </summary>
+            <param name="delegateFactory">delegate that provides lazy delegate</param>
+        </member>
+        <member name="T:NReco.Logging.ILogFactory">
+            <summary>
+            Represents log factory that provides log handlers.
+            </summary>
+        </member>
+        <member name="T:NReco.PartialDelegateAdapter">
+            <summary>
+            Adapter for partial delegate application 
+            (produces another delegate of smaller arity by fixing some arguments)
+            </summary>
+        </member>
+        <member name="M:NReco.PartialDelegateAdapter.#ctor(System.Delegate,System.Object[])">
+            <summary>
+            Constructs PartialDelegateAdapter for given target delegate and fixed arguments
+            </summary>
+            <param name="target">target delegate</param>
+            <param name="fixedArgs">fixed arguments</param>
+        </member>
+        <member name="P:NReco.PartialDelegateAdapter.KeepArg">
+            <summary>
+            Value that used as marker to keep argument in resulting delegate
+            </summary>
+        </member>
+        <member name="T:NReco.InvokeMethod">
+            <summary>
+            Invoke object's method that is most compatible with provided arguments
+            </summary>
+        </member>
+        <member name="T:NReco.ValueComparer">
+            <summary>
+            Generic "by value" comparer that uses ConvertManager for types harmonization
+            </summary>
+        </member>
+        <member name="T:NReco.Linq.LambdaParserException">
+            <summary>
+            The exception that is thrown when lambda expression parse error occurs
+            </summary>
+        </member>
+        <member name="P:NReco.Linq.LambdaParserException.Expression">
+            <summary>
+            Lambda expression
+            </summary>
+        </member>
+        <member name="P:NReco.Linq.LambdaParserException.Index">
+            <summary>
+            Parser position where syntax error occurs 
+            </summary>
+        </member>
+        <member name="T:NReco.Logging.ILog">
+            <summary>
+            Simple interface for logging used by NReco core components.
+            </summary>
+            <remarks>
+            Reason why NReco has additional abstraction from standard .NET tracing schema is flexibility.
+            In particular alternative logging framework (log4net) may be used for logging NReco.
+            </remarks>
+        </member>
+        <member name="M:NReco.Logging.ILog.Write(NReco.Logging.LogEvent,System.String,System.Object[])">
+            <summary>
+            Logs formatted message
+            </summary>
+            <param name="fmtMsg">format string</param>
+            <param name="args">arguments</param>
+        </member>
+        <member name="M:NReco.Logging.ILog.Write(NReco.Logging.LogEvent,System.Object)">
+            <summary>
+            Logs debug event as name-value pairs
+            </summary>
+            <param name="keys">names</param>
+            <param name="values">values</param>
+        </member>
+        <member name="M:NReco.Logging.ILog.IsEnabledFor(NReco.Logging.LogEvent)">
+            <summary>
+            Checks if debug events are enabled for this log
+            </summary>
+        </member>
+        <member name="T:NReco.Logging.LogManager">
+            <summary>
+            LogManager defines static methods used for obtaining log instance.
+            </summary>
+        </member>
+        <member name="T:NReco.Logging.LogWrapper">
+            <summary>
+            Wrapper over real log instance.
+            </summary>
+        </member>
+        <member name="T:NReco.Logging.TraceLogFactory">
+            <summary>
+            Default .NET trace log factory implementation.
+            </summary>
+        </member>
+    </members>
+</doc>

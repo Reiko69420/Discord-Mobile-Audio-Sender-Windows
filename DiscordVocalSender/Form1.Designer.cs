@@ -42,6 +42,10 @@ namespace DiscordVocalSender
             this.LabelAudio = new System.Windows.Forms.Label();
             this.SendButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.formBtn = new System.Windows.Forms.Button();
+            this.formIntensity = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.seeToken = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +58,9 @@ namespace DiscordVocalSender
             // 
             // TokenBox
             // 
+            this.TokenBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.TokenBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TokenBox.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.TokenBox, "TokenBox");
             this.TokenBox.Name = "TokenBox";
             // 
@@ -65,11 +72,17 @@ namespace DiscordVocalSender
             // 
             // ChannelBox
             // 
+            this.ChannelBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.ChannelBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ChannelBox.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.ChannelBox, "ChannelBox");
             this.ChannelBox.Name = "ChannelBox";
             // 
             // LengthBox
             // 
+            this.LengthBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.LengthBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.LengthBox.ForeColor = System.Drawing.Color.White;
             resources.ApplyResources(this.LengthBox, "LengthBox");
             this.LengthBox.Name = "LengthBox";
             // 
@@ -92,21 +105,26 @@ namespace DiscordVocalSender
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(50)))));
             resources.ApplyResources(this.button1, "button1");
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Name = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // LabelAudio
             // 
             resources.ApplyResources(this.LabelAudio, "LabelAudio");
+            this.LabelAudio.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.LabelAudio.Name = "LabelAudio";
             // 
             // SendButton
             // 
+            this.SendButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             resources.ApplyResources(this.SendButton, "SendButton");
+            this.SendButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.SendButton.Name = "SendButton";
-            this.SendButton.UseVisualStyleBackColor = true;
+            this.SendButton.UseVisualStyleBackColor = false;
             this.SendButton.Click += new System.EventHandler(this.SendButton_ClickAsync);
             // 
             // label5
@@ -115,11 +133,47 @@ namespace DiscordVocalSender
             this.label5.ForeColor = System.Drawing.Color.Crimson;
             this.label5.Name = "label5";
             // 
+            // formBtn
+            // 
+            this.formBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.formBtn, "formBtn");
+            this.formBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.formBtn.Name = "formBtn";
+            this.formBtn.UseVisualStyleBackColor = false;
+            this.formBtn.Click += new System.EventHandler(this.formBtn_Click);
+            // 
+            // formIntensity
+            // 
+            this.formIntensity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.formIntensity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.formIntensity.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.formIntensity.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.formIntensity, "formIntensity");
+            this.formIntensity.Name = "formIntensity";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Name = "label6";
+            // 
+            // seeToken
+            // 
+            resources.ApplyResources(this.seeToken, "seeToken");
+            this.seeToken.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.seeToken.Name = "seeToken";
+            this.seeToken.UseVisualStyleBackColor = true;
+            this.seeToken.CheckedChanged += new System.EventHandler(this.seeToken_CheckedChanged);
+            // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.Controls.Add(this.seeToken);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.formIntensity);
+            this.Controls.Add(this.formBtn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.SendButton);
             this.Controls.Add(this.LabelAudio);
@@ -153,6 +207,10 @@ namespace DiscordVocalSender
         private System.Windows.Forms.Label LabelAudio;
         private System.Windows.Forms.Button SendButton;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button formBtn;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox formIntensity;
+        private System.Windows.Forms.CheckBox seeToken;
     }
 }
 
