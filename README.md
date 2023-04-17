@@ -1,5 +1,5 @@
 # Discord Mobile Audio Sender Windows
-Send audio files (It work for OGG, i don't know if it works with any other audio file) to Discord chat in a format that can be played like Discord mobile audio messages!
+Send audio files (It work for OGG, MP3, WAV, MP4 (Don't create Waveform or it will crash), i don't know if it works with any other audio file) to Discord chat in a format that can be played like Discord mobile audio messages!
 You just need to get your Token, Channel ID and choose the time you want your audio to be!
 
 # Screenshot
