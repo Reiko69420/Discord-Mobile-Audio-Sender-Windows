@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -12,9 +7,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using NAudio.Wave;
-using NReco.VideoConverter;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace DiscordVocalSender
 {
@@ -77,10 +70,6 @@ namespace DiscordVocalSender
                 filePath = ofd1.FileName;
                 LabelAudio.Text = filePath;
 
-                //var ffMpeg = new FFMpegConverter();
-                //ffMpeg.ConvertMedia(@filePath, Directory.GetCurrentDirectory() + "/TempAudio.wav", "wav");
-
-                // Convert the audio file to WAV format using FFmpeg
                 var startInfo = new ProcessStartInfo
                 {
                     FileName = "ffmpeg",
@@ -151,11 +140,9 @@ namespace DiscordVocalSender
                     return;
                 }
 
-                //MessageBox.Show(responseContent, "Discord File Uploaded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent);
                 string uploadUrl = jsonResponse.attachments[0].upload_url;
                 string fileNameDiscord = jsonResponse.attachments[0].upload_filename;
-                //MessageBox.Show(fileNameDiscord, "Discord New File Name", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 using (var client2 = new HttpClient())
                 {
