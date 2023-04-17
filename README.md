@@ -14,6 +14,7 @@ You just need to get your Token, Channel ID and choose the time you want your au
 https://youtu.be/bs7QBQtPVPM
 
 You just have to open the .exe, put your discord token, the Channel ID, Audio Lenght (Can be anything), select your audio file and click send!
+(It works with a lot of audio file, i thought it worked only for ogg but nop)
 
 
 
